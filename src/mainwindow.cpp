@@ -537,19 +537,18 @@ void MainWindow::onRoundTimeout()
 
         if (Settings::is_notification_enabled)
         {
-            trayInit();
-            tray->show();
-
             int current_break;
             if (current_round == Settings::ShortBreak)
-                current_break = Settings::short_break_time;
+            current_break = Settings::short_break_time;
             else if (current_round == Settings::LongBreak)
-                current_break = Settings::long_break_time;
+            current_break = Settings::long_break_time;
 
-            tray->showMessage(tr("Round has been ended"), tr("Now you can have a rest for ") +
-                                                              QString::number(current_break / Settings::SEC_IN_MIN) +
-                                                              tr(" minutes!"));
-            delete tray;
+            QSystemTrayIcon *temp_tray = new QSystemTrayIcon(QIcon("./icons/icon2.ico"));
+            temp_tray->show();
+            temp_tray->showMessage(tr("Round has been ended"), tr("Now you can have a rest for ") +
+                                          QString::number(current_break / Settings::SEC_IN_MIN) +
+                                          tr(" minutes!"));
+            delete temp_tray;
         }
     }
 }
@@ -566,13 +565,12 @@ void MainWindow::onShortBreakTimeout()
     {
         if (Settings::is_notification_enabled)
         {
-            trayInit();
-            tray->show();
-
-            tray->showMessage(tr("Short break has been ended"), tr("Now you should focus on your task for ") +
-                                                             QString::number(Settings::round_time / Settings::SEC_IN_MIN) +
-                                                              tr(" minutes!"));
-            delete tray;
+            QSystemTrayIcon *temp_tray = new QSystemTrayIcon(QIcon("./icons/icon2.ico"));
+            temp_tray->show();
+            temp_tray->showMessage(tr("Short break has been ended"), tr("Now you should focus on your task for ") +
+                     QString::number(Settings::round_time / Settings::SEC_IN_MIN) +
+                      tr(" minutes!"));
+            delete temp_tray;
         }
 
         Settings::round_sound.play();
@@ -602,14 +600,14 @@ void MainWindow::onLongBreakTimeout()
     {
         if (Settings::is_notification_enabled)
         {
-            trayInit();
-            tray->show();
-
-            tray->showMessage(tr("Long break has been ended"), tr("Now you should focus on your task for ") +
-                                                             QString::number(Settings::round_time / Settings::SEC_IN_MIN) +
-                                                              tr(" minutes!"));
-            delete tray;
+            QSystemTrayIcon *temp_tray = new QSystemTrayIcon(QIcon("./icons/icon2.ico"));
+            temp_tray->show();
+            temp_tray->showMessage(tr("Long break has been ended"), tr("Now you should focus on your task for ") +
+                 QString::number(Settings::round_time / Settings::SEC_IN_MIN) +
+                  tr(" minutes!"));
+            delete temp_tray;
         }
+
         Settings::round_sound.play();
         long_break_timer->stop();
         timeout_counter = 0;
@@ -690,8 +688,9 @@ void MainWindow::openSettings()
 // Відкриття вікна інформації про додаток
 void MainWindow::openCredits()
 {
-    QMessageBox::information(this, tr("Credits"), tr("Version 2.3.0\n"
-                                                     "Created by: Oleksii Paziura"));
+    QMessageBox::information(this, tr("Credits"), tr("Version 2.3.1\n"
+                                                     "Created by:\n"
+                                                     "->Oleksii Paziura\n"));
 }
 
 // Відкриття вікна статистичних даних
