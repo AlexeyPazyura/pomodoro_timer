@@ -60,5 +60,5 @@ If you have any feedback, please reach out to me at alexeypazyura@gmail.com
 
 ## License
 
-This project was written with [MIT](https://choosealicense.com/licenses/mit/) license.
+This project was written with BSD-3-Clause license.
 
