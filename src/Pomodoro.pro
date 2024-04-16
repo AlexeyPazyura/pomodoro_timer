@@ -4,7 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
-VERSION = 2.3.1
+VERSION = 2.3.2
 QMAKE_TARGET_PRODUCT = Pomodoro
 QMAKE_TARGET_DESCRIPTION = Simple minimalist pomodoro timer.
 QMAKE_TARGET_COPYRIGHT = O.O. Paziura

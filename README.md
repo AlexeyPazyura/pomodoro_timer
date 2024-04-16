@@ -50,7 +50,7 @@ You can start, pause/continue, stop timer, switch rounds and roll the dial (inte
 ![settings|250](https://github.com/OleksiiPaziura/pomodoro_timer/assets/131613795/fa1c4983-3791-453d-ae3d-97cb3d156259)
 ## Authors
 
-- [Oleksii Paziura](https://github.com/OleksiiPaziura)
+- [tophcore9(Oleksii Paziura)](https://github.com/tophcore9)
 
 
 ## Feedback

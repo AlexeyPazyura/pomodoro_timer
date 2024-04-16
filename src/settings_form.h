@@ -10,98 +10,97 @@ class SettingsForm : public QDialog
 
 private:
     /// CONSTANTS
-    // Кількість відтворюваних можливих хвилин для встеновлення
+    // Amount of minutes to show
     const int SLIDER_MINS = 5 * Settings::SEC_IN_MIN;
     int statistics_reset;
 
     /// LAYOUTS
-    QVBoxLayout *base_layout;				// Базовий макет
-    QGridLayout *main_layout;				// Макет для розміщення GUI
-    QHBoxLayout *buttons_layout;			// Макет для розміщення кнопок скасування та додавання
+    QVBoxLayout *base_layout;
+    QGridLayout *main_layout;				// GUI layout
+    QHBoxLayout *buttons_layout;			// Layout for 'Accept' and 'Cancel' buttons
 
     /// WIDGETS
     /// FOR MAIN_LAYOUT
-    // Раунд
-    QLabel *round_front_lbl;				// Передня позначка
-    QSlider *round_time_slider;				// Слайдер обрання часу раунду
-    QLabel *round_back_lbl;					// Задня позначка
+    // Round
+    QLabel *round_front_lbl;
+    QSlider *round_time_slider;
+    QLabel *round_back_lbl;
 
-    QLabel *round_sound_front_lbl;			// Передня позначка
-    QPushButton *round_sound_play_btn;		// Кнопка відтворення обраного аудіо-сигналу
-    QLabel *round_sound_back_lbl;			// Позначка назви файла обраного аудіо-сигналу
-    QPushButton *round_sound_change_btn;	// Кнопка зміни аудіо-сигналу
-    QString old_round_sound_path;			// Старий путь до аудіо-сигналу
+    QLabel *round_sound_front_lbl;
+    QPushButton *round_sound_play_btn;
+    QLabel *round_sound_back_lbl;
+    QPushButton *round_sound_change_btn;
+    QString old_round_sound_path;
 
-    // Коротка перерва
-    QLabel *short_front_lbl;				// Передня позначка
-    QSlider *short_break_slider;			// Слайдер обрання часу короткої перерви
-    QLabel *short_back_lbl;					// Задня позначка
+    // Short break
+    QLabel *short_front_lbl;
+    QSlider *short_break_slider;
+    QLabel *short_back_lbl;
 
-    QLabel *short_sound_front_lbl;			// Передня позначка
-    QPushButton *short_sound_play_btn;		// Кнопка відтворення обраного аудіо-сигналу
-    QLabel *short_sound_back_lbl;			// Позначка назви файла обраного аудіо-сигналу
-    QPushButton *short_sound_change_btn;	// Кнопка зміни аудіо-сигналу
-    QString old_short_sound_path;			// Старий путь до аудіо-сигналу
+    QLabel *short_sound_front_lbl;
+    QPushButton *short_sound_play_btn;
+    QLabel *short_sound_back_lbl;
+    QPushButton *short_sound_change_btn;
+    QString old_short_sound_path;
 
-    // Довга перерва
-    QLabel *long_front_lbl;					// Передня позначка
-    QSlider *long_break_slider;				// Слайдер обрання часу довгої перерви
-    QLabel *long_back_lbl;					// Задня позначка
+    // Long break
+    QLabel *long_front_lbl;
+    QSlider *long_break_slider;
+    QLabel *long_back_lbl;
 
-    QLabel *long_sound_front_lbl;			// Передня позначка
-    QPushButton *long_sound_play_btn;		// Кнопка відтворення обраного аудіо-сигналу
-    QLabel *long_sound_back_lbl;			// Позначка назви файла обраного аудіо-сигналу
-    QPushButton *long_sound_change_btn;		// Кнопка зміни аудіо-сигналу
-    QString old_long_sound_path;			// Старий путь до аудіо-сигналу
+    QLabel *long_sound_front_lbl;
+    QPushButton *long_sound_play_btn;
+    QLabel *long_sound_back_lbl;
+    QPushButton *long_sound_change_btn;
+    QString old_long_sound_path;
 
 
-    QCheckBox *pull_up_settings;			// Підтягування всіх слайдерів через один з них
+    QCheckBox *pull_up_settings;
 
-    QLabel *tray_roll_front_lbl;			// Передня позначка
-    QComboBox *tray_roll;					// Сгортання в трей
-    QCheckBox *enable_tray_notifications;	// Вмикання повідомлень у треї
+    QLabel *tray_roll_front_lbl;
+    QComboBox *tray_roll;
+    QCheckBox *enable_tray_notifications;
 
-    QLabel *languages_front_lbl;			// Передня позначка
-    QComboBox *languages; 					// Обрання мови застосунку
+    QLabel *languages_front_lbl;
+    QComboBox *languages;
 
-    QPushButton *factory_reset_btn;			// Кнопка скидання налаштувань
+    QPushButton *factory_reset_btn;
 
 
     /// FOR BUTTONS_LAYOUT
-    QPushButton *accept_btn;				// Кнопка збереження
-    QPushButton *cancel_btn;				// Кнопка скасування
+    QPushButton *accept_btn;
+    QPushButton *cancel_btn;
 
 public:
     explicit SettingsForm(QDialog *parent = nullptr);
-    void save_settings(bool is_reset = 0);	// Збереження налаштувань в клас Settings
-    void widgetsInit();						// Ініціалізація віджетів
-    void layoutsInit();						// Ініціалізація макетів
-    void layoutsFill();						// Заповнення макетів віджетами
-    void connectionsInit();					// Ініціалізація сигналів та слотів
-    void baseInit();						// Базова ініціалізація
+    void save_settings(bool is_reset = 0);
+    void widgetsInit();
+    void layoutsInit();
+    void layoutsFill();
+    void connectionsInit();
+    void baseInit();
 
 public slots:
-    void save_changings();					// Збереження змін
+    void save_changings();
 
-    void play_round_sound();				// Відтворення аудіо-сигналу для раунда
-    void change_round_sound();				// Змінення аудіо-сигналу раунда
+    void play_round_sound();
+    void change_round_sound();
 
-    void play_short_break_sound();			// Відтворення аудіо-сигналу для короткої перерви
-    void change_short_break_sound();		// Змінення аудіо-сигналу короткої перерви
+    void play_short_break_sound();
+    void change_short_break_sound();
 
-    void play_long_break_sound();			// Відтворення аудіо-сигналу для довгої перерви
-    void change_long_break_sound();			// Змінення аудіо-сигналу довгої перерви
+    void play_long_break_sound();
+    void change_long_break_sound();
 
-    void round_slider_changed(int);			// Обробка зміни раунду
-    void short_slider_changed(int);			// Обробка зміни короткої перерви
-    void long_slider_changed(int);			// Обробка зміни довгої перерви
+    void round_slider_changed(int);
+    void short_slider_changed(int);
+    void long_slider_changed(int);
 
-    void pull_up_settings_changed(int);		// Обробка змін для підтягування налаштувань
+    void pull_up_settings_changed(int);
 
-    void factory_reset(); 					// Метод для скидання налаштувань
+    void factory_reset();
 
 protected:
-    // Обробник закриття вікна
     void closeEvent(QCloseEvent *event) override;
 };
 

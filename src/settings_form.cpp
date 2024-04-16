@@ -10,7 +10,6 @@ SettingsForm::SettingsForm(QDialog *parent)
     connectionsInit();
 }
 
-// Збереження налаштувань в клас Settings
 void SettingsForm::save_settings(bool is_reset)
 {
     QSettings settings("PMDR0", "base");
@@ -93,11 +92,10 @@ void SettingsForm::save_settings(bool is_reset)
     settings.endGroup();
 }
 
-// Ініціалізація віджетів
 void SettingsForm::widgetsInit()
 {
     // FOR MAIN_LAYOUT
-    // Раунд
+    // Round
     round_front_lbl = new QLabel(tr("Round time:"));
     round_time_slider = new QSlider(Qt::Horizontal);
     round_time_slider->setRange(0, SLIDER_MINS);
@@ -110,7 +108,7 @@ void SettingsForm::widgetsInit()
     round_sound_change_btn = new QPushButton(tr("Change sound"));
     old_round_sound_path = Settings::round_sound.source().path();
 
-    // Коротка перерва
+    // Short break
     short_front_lbl = new QLabel(tr("Short break time:"));
     short_break_slider = new QSlider(Qt::Horizontal);
     short_break_slider->setRange(0, SLIDER_MINS);
@@ -123,7 +121,7 @@ void SettingsForm::widgetsInit()
     short_sound_change_btn = new QPushButton(tr("Change sound"));
     old_short_sound_path = Settings::short_break_sound.source().path();
 
-    // Довга перерва
+    // Long break
     long_front_lbl = new QLabel(tr("Long break time:"));
     long_break_slider = new QSlider(Qt::Horizontal);
     long_break_slider->setRange(0, SLIDER_MINS);
@@ -177,7 +175,6 @@ void SettingsForm::widgetsInit()
     cancel_btn = new QPushButton(tr("Cancel"));
 }
 
-// Ініціалізація макетів
 void SettingsForm::layoutsInit()
 {
     base_layout = new QVBoxLayout;
@@ -186,7 +183,6 @@ void SettingsForm::layoutsInit()
     buttons_layout->setAlignment(Qt::AlignBottom);
 }
 
-// Заповнення макетів віджетами
 void SettingsForm::layoutsFill()
 {
     // MAIN LAYOUT
@@ -241,42 +237,39 @@ void SettingsForm::layoutsFill()
     buttons_layout->addWidget(cancel_btn);
 }
 
-// Ініціалізація сигналів та слотів
 void SettingsForm::connectionsInit()
 {
-    // Обробка збереження, скасування і скидання налаштувань
+    // Saving, canceling, resetting
     connect(accept_btn, SIGNAL(clicked()), this, SLOT(save_changings()));
     connect(cancel_btn, SIGNAL(clicked()), this, SLOT(close()));
     connect(factory_reset_btn, SIGNAL(clicked()), this, SLOT(factory_reset()));
 
-    // Обробка звукової частини
-    // Раунд
+    // Sound part
+    // Round
     connect(round_sound_play_btn, SIGNAL(clicked()), this, SLOT(play_round_sound()));
     connect(round_sound_change_btn, SIGNAL(clicked()), this, SLOT(change_round_sound()));
-    // Коротка перерва
+    // Short break
     connect(short_sound_play_btn, SIGNAL(clicked()), this, SLOT(play_short_break_sound()));
     connect(short_sound_change_btn, SIGNAL(clicked()), this, SLOT(change_short_break_sound()));
-    // Довга перерва
+    // Long break
     connect(long_sound_play_btn, SIGNAL(clicked()), this, SLOT(play_long_break_sound()));
     connect(long_sound_change_btn, SIGNAL(clicked()), this, SLOT(change_long_break_sound()));
 
-    // Обробка зміни слайдерів часу
+    // Changing sliders
     connect(round_time_slider, SIGNAL(valueChanged(int)), this, SLOT(round_slider_changed(int)));
     connect(short_break_slider, SIGNAL(valueChanged(int)), this, SLOT(short_slider_changed(int)));
     connect(long_break_slider, SIGNAL(valueChanged(int)), this, SLOT(long_slider_changed(int)));
 
-    // Обробка підтягування слайдерів часу
+    // Pulling up sliders
     connect(pull_up_settings, SIGNAL(stateChanged(int)), this, SLOT(pull_up_settings_changed(int)));
 }
 
-// Базова ініціалізація
 void SettingsForm::baseInit()
 {
     setFixedSize(400, 450);
     statistics_reset = QMessageBox::No;
 }
 
-// Збереження налаштувань при натисканні кнопки "Зберігти"
 void SettingsForm::save_changings()
 {
     Settings::round_time = round_time_slider->value() * Settings::SEC_IN_MIN;
@@ -300,13 +293,11 @@ void SettingsForm::save_changings()
     close();
 }
 
-// Відтворення аудіо-сигналу раунда
 void SettingsForm::play_round_sound()
 {
     Settings::round_sound.play();
 }
 
-// Зміна аудіо-сигналу раунда
 void SettingsForm::change_round_sound()
 {
     Settings::round_sound.stop();
@@ -320,13 +311,11 @@ void SettingsForm::change_round_sound()
     round_sound_back_lbl->setText(Settings::round_sound.source().fileName());
 }
 
-// Відтворення аудіо-сигналу короткої перерви
 void SettingsForm::play_short_break_sound()
 {
     Settings::short_break_sound.play();
 }
 
-// Зміна аудіо-сигналу короткої перерви
 void SettingsForm::change_short_break_sound()
 {
     Settings::short_break_sound.stop();
@@ -340,13 +329,11 @@ void SettingsForm::change_short_break_sound()
     short_sound_back_lbl->setText(Settings::short_break_sound.source().fileName());
 }
 
-// Відтворення аудіо-сигналу довгої перерви
 void SettingsForm::play_long_break_sound()
 {
     Settings::long_break_sound.play();
 }
 
-// Зміна аудіо-сигналу довгої перерви
 void SettingsForm::change_long_break_sound()
 {
     Settings::long_break_sound.stop();
@@ -360,7 +347,6 @@ void SettingsForm::change_long_break_sound()
     long_sound_back_lbl->setText(Settings::long_break_sound.source().fileName());
 }
 
-// Обробка зміни часу раунда
 void SettingsForm::round_slider_changed(int value)
 {
     round_back_lbl->setText(QString::number(value) + tr(" min"));
@@ -369,7 +355,6 @@ void SettingsForm::round_slider_changed(int value)
         pull_up_settings_changed(true);
 }
 
-// Обробка зміни часу короткої перерви
 void SettingsForm::short_slider_changed(int value)
 {
     int short_break_time = short_break_slider->value();
@@ -393,7 +378,6 @@ void SettingsForm::short_slider_changed(int value)
     }
 }
 
-// Обробка зміни часу довгої перерви
 void SettingsForm::long_slider_changed(int value)
 {
     int long_break_time = long_break_slider->value();
@@ -409,10 +393,9 @@ void SettingsForm::long_slider_changed(int value)
     }
 }
 
-// Обробка змін для підтягування налаштувань
 void SettingsForm::pull_up_settings_changed(int value)
 {
-    // У разі, якщо чекбокс дорівнює true
+    // If 'pull-up' checkbox enabled
     if (value != 0)
     {
         int round_time = round_time_slider->value();
@@ -423,7 +406,6 @@ void SettingsForm::pull_up_settings_changed(int value)
     }
 }
 
-// Метод для скидання налаштувань
 void SettingsForm::factory_reset()
 {
     int res = QMessageBox::warning(this, tr("Warning!"), tr("Are you sure?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
@@ -448,7 +430,6 @@ void SettingsForm::factory_reset()
     }
 }
 
-// Обробник закриття вікна
 void SettingsForm::closeEvent(QCloseEvent *event)
 {
     Settings::round_sound.setSource(QUrl::fromLocalFile(old_round_sound_path));

@@ -8,7 +8,9 @@
 class Settings
 {
 public:
-    static const int SEC_IN_MIN = 60;
+    static const int SEC_IN_MIN = 60,
+                     SEC_IN_HOUR = 3600,
+                     SECOND_IN_MS = 1000;
     enum Pomodoro
     {
         Round,
@@ -22,28 +24,28 @@ public:
         Postponed
     } is_tray_enabled;
 
-    // Налаштування раунів
+    /// ROUNDS
     static int round_time;
     static QSoundEffect round_sound;
     static const int DEFAULT_ROUND_TIME_IN_MIN = 25;
-    static const int DEFAULT_ROUND_TIME_IN_SEC = 25 * SEC_IN_MIN;
+    static const int DEFAULT_ROUND_TIME_IN_SEC = DEFAULT_ROUND_TIME_IN_MIN * SEC_IN_MIN;
     static QPalette round_color;
 
-    // Налаштування коротких перерв
+    /// SHORT BREAKS
     static int short_break_time;
     static QSoundEffect short_break_sound;
     static const int DEFAULT_SHORT_BREAK_TIME_IN_MIN = 5;
-    static const int DEFAULT_SHORT_BREAK_TIME_IN_SEC = 5 * SEC_IN_MIN;
+    static const int DEFAULT_SHORT_BREAK_TIME_IN_SEC = DEFAULT_SHORT_BREAK_TIME_IN_MIN * SEC_IN_MIN;
     static QPalette short_break_color;
 
-    // Налаштування довгих перерв
+    /// LONG BREAKS
     static int long_break_time;
     static QSoundEffect long_break_sound;
     static const int DEFAULT_LONG_BREAK_TIME_IN_MIN = 15;
-    static const int DEFAULT_LONG_BREAK_TIME_IN_SEC = 15 * SEC_IN_MIN;
+    static const int DEFAULT_LONG_BREAK_TIME_IN_SEC = DEFAULT_LONG_BREAK_TIME_IN_MIN * SEC_IN_MIN;
     static QPalette long_break_color;
 
-    // Теми
+    /// THEMES (DEFAULT ARE TURNED OFF)
     static enum Themes
     {
         Contrast,
@@ -54,19 +56,19 @@ public:
     static QFont current_font;
     static qreal current_opacity;
 
-    // Статистичні дані
-    static int total_rounds;
-    static int total_seconds;
-    static int today_rounds;
-    static int today_seconds;
-    static int weekly_rounds;
-    static int weekly_seconds;
-    static int monthly_rounds;
-    static int monthly_seconds;
-    static int annual_rounds;
-    static int annual_seconds;
+    /// STATISTICS
+    static int total_rounds,
+               total_seconds,
+               today_rounds,
+               today_seconds,
+               weekly_rounds,
+               weekly_seconds,
+               monthly_rounds,
+               monthly_seconds,
+               annual_rounds,
+               annual_seconds;
 
-    // Додаткові дані
+    /// OTHER
     static QString locale;
     static bool is_notification_enabled;
 };
